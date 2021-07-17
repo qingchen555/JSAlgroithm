@@ -1,0 +1,25 @@
+git push 时出现的错误：
+出现的问题1：
+ remote: Repository Not Found
+fatal: repository 'https://gitee.com/wq8080/js-algorithm.git/' not found
+原因：
+远程url的地址和本地仓库的地址不一致
+解决的方式：
+重新设置远程仓库地址
+git remote set-url origin https://gitee.com/wq8080/jsAlgorithm.git
+
+出现的问题2：
+ ! [rejected]        js-JianzhiOffer-algorithm -> js-JianzhiOffer-algorithm (fetch first)
+error: failed to push some refs to 'https://gitee.com/wq8080/jsAlgorithm.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+解决的方法：
+ git pull --rebase origin master
+ 原因：远程仓库和本地仓库不一致导致的
+ 需要将远程仓库更新合并到本地库中
+ –-rebase的作用是取消掉本地库中刚刚的commit
+
+
