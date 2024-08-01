@@ -30,13 +30,13 @@ const promiseAll = (promises) => {
 const promise1 = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve('promnise 1 resolved')
-  })
-}, 2000)
+  }, 1000)
+})
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve('promnise 2 resolved')
-  })
-}, 500)
+  }, 500)
+})
 
 promiseAll([promise1, promise2])
   .then((results) => {
