@@ -13,4 +13,28 @@ Rejetcted：异步操作失败
 都是处理异步操作，但是在语法使用，错误处理上有一定的区别
 语法：
 Promise 使用链式调用的方式，通过调用 then（）和 catch（）方法来处理异步操作的结果和错误
-async await 使用
+async await 使用 try catch 来处理成功或者失败的结果
+
+# promise构造函数
+promise接收一个函数作为参数，该函数接收resolve和reject函数作为参数
+then方法接收两个函数作为参数，第一个参数接收resolve的结果，第二个参数接收reject的结果
+new Promise((resolve, reject)=>{
+    if(success){
+        resolve(value)
+    }else{
+        reject(error)
+    }
+}).then(
+    (resolveValue)=>{
+        
+    },(rejecvterror)=>{
+
+    }
+
+).catch(
+
+)
+
+# react生命周期内去执行promise去获取某个dom节点
+# 登录会请求多个接口（用户信息、token、权限列表），如何用promise实现
+
