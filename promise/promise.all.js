@@ -13,7 +13,8 @@ const promiseAll = (promises) => {
     var resolveCount = 0
     var result = []
     promises.forEach((promise, i) => {
-      promise.then(
+      //promise 不一定是一个promise对象
+      Promise.resolve(promise).then(
         (value) => {
           result[i] = value
           resolveCount++
@@ -40,7 +41,14 @@ const promise2 = new Promise((resolve, reject) => {
   }, 500)
 })
 
-promiseAll([promise1, promise2])
+// 测试
+const promise11 = Promise.resolve(5)
+const promise22 = 4
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, 'AK、DADADA')
+})
+
+promiseAll([promise11, promise22, promise3])
   .then((results) => {
     console.log('promise all result:', results)
   })
