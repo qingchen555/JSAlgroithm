@@ -8,17 +8,21 @@
 //批量请求：并行发起所有请求
 
 const promiseAll = (promises) => {
+  const promiseList = [...promises]
   return new Promise((resolve, reject) => {
-    //
-    var resolveCount = 0
+    if (promiseList.length === 0) return resolve([])
+    var resolveCount = 0 //记录
     var result = []
-    promises.forEach((promise, i) => {
+
+    promiseList.forEach((promise, i) => {
       //promise 不一定是一个promise对象
+      //所以需要使用Promise.resolve(): 返回一个已经解析的Promise对象
       Promise.resolve(promise).then(
         (value) => {
-          result[i] = value
+          result.push(value)
           resolveCount++
-          if (resolveCount === promises.length) {
+
+          if (resolveCount === promiseList.length) {
             resolve(result)
           }
         },
@@ -32,12 +36,12 @@ const promiseAll = (promises) => {
 
 const promise1 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve('promnise 1 resolved')
+    resolve('promise 1 resolved')
   }, 1000)
 })
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve('promnise 2 resolved')
+    resolve('promise 2 resolved')
   }, 500)
 })
 
@@ -45,7 +49,8 @@ const promise2 = new Promise((resolve, reject) => {
 const promise11 = Promise.resolve(5)
 const promise22 = 4
 const promise3 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'AK、DADADA')
+  //   setTimeout(resolve, 100, 'AK、DADADA')
+  setTimeout(resolve, 1000, 'promise resolved')
 })
 
 promiseAll([promise11, promise22, promise3])
