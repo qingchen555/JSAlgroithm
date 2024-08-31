@@ -47,6 +47,9 @@ p1()
   })
 
 //   only all promises are the resolved status, can return the resolved results
+// promise return value is array which consists of the result of each promise resolved result
 Promise.all(tasks).then((results) => {
   console.log('promise all: ', results)
 })
+
+//对于promise.all 并发执行的promise数量是固定的

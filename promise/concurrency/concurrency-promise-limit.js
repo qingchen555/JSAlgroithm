@@ -3,7 +3,6 @@
 const processRequest = async (request) => {
   console.log('Sending request:', request)
   await new Promise((resolve) => setTimeout(resolve, 1000))
-
   callback(request)
 }
 const requestList = ['request1', 'request2', 'request3', 'request4', 'request5']
@@ -21,7 +20,7 @@ async function sendRequest(requestList, limits, callback) {
     while (counter < limits && requestList.length > 0) {
       const request = requestList.shift() // 取出下一个请求
       counter++
-      await processRequest(request) // 执行请求
+      await processRequest(request)
       counter--
     }
 

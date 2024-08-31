@@ -49,5 +49,9 @@ function limitLoad(urls, handler, limit) {
       .catch((err, url) => {
         console.log(err, url)
       })
+
+    return sequence.reduce(getTotalFunc, Promise.resolve()).then(() => {
+      Promise.all(promises)
+    })
   }
 }
